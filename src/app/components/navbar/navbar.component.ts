@@ -14,7 +14,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router
-  ) { }
+  ) { 
+    this.loggedInUserId = ''
+    this.loggedInUserName = ''
+    this.loggedInUserType = ''
+  }
 
   ngOnInit(): void {
     this.loggedInUserId = localStorage.getItem('examBuilderUserId')

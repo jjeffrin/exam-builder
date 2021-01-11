@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-  ) { }
+  ) { 
+    this.username = ''
+    this.password = ''
+  }
 
   ngOnInit(): void {
   }

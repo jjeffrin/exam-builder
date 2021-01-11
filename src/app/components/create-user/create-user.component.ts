@@ -20,7 +20,15 @@ export class CreateUserComponent implements OnInit {
 
   constructor(
     private userService: UserService
-  ) { }
+  ) { 
+    this.selectedUser = {
+      id: '',
+      name: '',
+      username: '',
+      password: '',
+      type: ''
+    }
+  }
 
   ngOnInit(): void {
     this.getAllUsers();

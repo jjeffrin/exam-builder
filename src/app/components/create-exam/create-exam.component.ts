@@ -21,7 +21,14 @@ export class CreateExamComponent implements OnInit {
 
   constructor(
     private examService: ExamService
-  ) { }
+  ) { 
+    this.selectedExam = {
+      id: '',
+      code: '',
+      name: '',
+      date: ''
+    };
+  }
 
   ngOnInit(): void {
     this.getAllExams()
