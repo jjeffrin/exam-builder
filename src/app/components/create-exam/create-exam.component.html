@@ -1,0 +1,101 @@
+<h1 class="is-size-3">Create new exam</h1>
+<div class="columns">
+    <div class="column is-one-third">
+        <form (ngSubmit)="onSubmit()" [formGroup]="newExamForm">
+            <div class="field">
+                <label class="label">Exam name</label>
+                <div class="control">
+                    <input class="input" formControlName="name" type="text" placeholder="e.g Maths">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Exam code</label>
+                <div class="control">
+                    <input class="input" formControlName="code" type="text" placeholder="e.g. MAT">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Exam date</label>
+                <div class="control">
+                    <input class="input" formControlName="date" type="date" data-start-date="10/1/2021">
+                </div>
+            </div>
+            <!-- Alert box -->
+            <div *ngIf="showErrMsg" class="notification is-danger">
+                <button class="delete" (click)="closeAlert()"></button>
+                {{errMsg}}
+            </div>
+            <!-- Alert box -->
+            <button class="button is-light">Add exam</button>
+        </form>
+    </div>
+</div>
+
+<!-- User List -->
+<h3 class="is-size-4">Exam List</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Number">No.</abbr></th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Date</th>
+            <th>Delete User</th>
+            <th>Update User</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exam of examList; let i=index">
+            <th>{{i+1}}</th>
+            <td>{{exam.name}}</td>
+            <td>{{exam.code}}</td>
+            <td>{{exam.date}}</td>
+            <td><button class="button is-danger" (click)="deleteExam(exam.id)">Delete</button></td>
+            <td><button class="button is-warning" (click)="updateExam(exam)">Update</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal" [ngClass]="{'is-active': showModal == true}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Update exam</p>
+            <button (click)="closeModal()" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <form (ngSubmit)="onSubmit()">
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input class="input" [(ngModel)]="updateName" type="text" name="updateName"
+                            placeholder="e.g Maths">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Code</label>
+                    <div class="control">
+                        <input class="input" [(ngModel)]="updateCode" type="text" name="updateCode"
+                            placeholder="e.g. MAT">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Date</label>
+                    <div class="control">
+                        <input class="input" [(ngModel)]="updateDate" type="date" name="updateDate"
+                            placeholder="e.g. 1/2/2012">
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" (click)="saveChanges()">Save changes</button>
+            <button class="button" (click)="closeModal()">Cancel</button>
+        </footer>
+    </div>
+</div>

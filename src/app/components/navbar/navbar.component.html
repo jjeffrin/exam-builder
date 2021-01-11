@@ -1,0 +1,43 @@
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" routerLink="/dashboard">
+            <h1 class="has-text-black">ExamBuilder</h1>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a *ngIf="loggedInUserType == 'admin'" routerLink="/dashboard/create-user" class="navbar-item" routerLinkActive="is-active">
+                Create user
+            </a>
+
+            <a *ngIf="loggedInUserType == 'admin'" routerLink="/dashboard/create-exam" class="navbar-item" routerLinkActive="is-active">
+                Create exam
+            </a>
+
+            <a *ngIf="loggedInUserType != 'admin'" routerLink="/dashboard/create-question" class="navbar-item" routerLinkActive="is-active">
+                Create question
+            </a>
+
+            <a routerLink="/dashboard/associate" class="navbar-item" routerLinkActive="is-active">
+                Associate questions with exam
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a (click)="logout()" class="button is-light">
+                        Log out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

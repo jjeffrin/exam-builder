@@ -1,0 +1,91 @@
+<h1 class="is-size-3">Create new user</h1>
+<div class="columns">
+    <div class="column is-one-third">
+        <form (ngSubmit)="onSubmit()" [formGroup]="newUserForm">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input" formControlName="name" type="text" placeholder="e.g Jeffrin J">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Username</label>
+                <div class="control">
+                    <input class="input" formControlName="username" type="text" placeholder="e.g. jeffrinj">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" formControlName="password" type="password"
+                        placeholder="have a strong password">
+                </div>
+            </div>
+            <!-- Alert box -->
+            <div *ngIf="showErrMsg" class="notification is-danger">
+                <button class="delete" (click)="closeAlert()"></button>
+                {{errMsg}}
+            </div>
+            <!-- Alert box -->
+            <button class="button is-light">Add user</button>
+        </form>
+    </div>
+</div>
+<!-- User List -->
+<h3 class="is-size-4">User List</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Number">No.</abbr></th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>User Type</th>
+            <th>Delete User</th>
+            <th>Update User</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userList; let i=index">
+            <th>{{i+1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.type}}</td>
+            <td><button class="button is-danger" (click)="deleteUser(user.id)">Delete</button></td>
+            <td><button class="button is-warning" (click)="updateUser(user)">Update</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal" [ngClass]="{'is-active': showModal == true}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Update user</p>
+            <button (click)="closeModal()" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <form (ngSubmit)="onSubmit()">
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                        <input class="input" [(ngModel)]="updateName" type="text" name="updateName" placeholder="e.g Jeffrin J">
+                    </div>
+                </div>
+    
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input class="input" [(ngModel)]="updateUsername" type="text" name="updateUsername" placeholder="e.g. jeffrinj">
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" (click)="saveChanges()">Save changes</button>
+            <button class="button" (click)="closeModal()">Cancel</button>
+        </footer>
+    </div>
+</div>

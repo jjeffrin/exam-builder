@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "exam-builder"
+  "defaultProject": "exam-builder",
+  "cli": {
+    "analytics": "18516c2c-637c-43d7-987b-a31c4ac47bb6"
+  }
 }

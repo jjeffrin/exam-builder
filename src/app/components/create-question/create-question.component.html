@@ -1,0 +1,41 @@
+<h1 class="is-size-3">Create new question</h1>
+<div class="columns">
+    <div class="column is-one-third">
+        <form (ngSubmit)="onSubmit()" [formGroup]="newQuestionForm">
+            <div class="field">
+                <label class="label">Content</label>
+                <div class="control">
+                    <textarea formControlName="content" name="" id="" cols="100" rows="10"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Question Type</label>
+                <div class="control">
+                    <select formControlName="typeCode" name="" id="">
+                        <option value="0">Choose question type</option>
+                        <option value="1">Fill-in</option>
+                        <option value="2">Chose One Answer</option>
+                        <option value="3">Chose Multiple Answers</option>
+                    </select>
+                </div>
+            </div>
+
+            <div *ngIf="this.newQuestionForm.value.typeCode != 1" class="field">
+                <label class="label">Options</label>
+                <p>(Use ~~ as the separator between the options)</p>
+                <div class="control">
+                    <textarea formControlName="options" name="" id="" cols="100" rows="10"></textarea>
+                </div>
+            </div>
+            
+            <!-- Alert box -->
+            <div *ngIf="showAlertMsg" class="notification is-danger">
+                <button class="delete" (click)="closeAlert()"></button>
+                {{alertMsg}}
+            </div>
+            <!-- Alert box -->
+            <button class="button is-light">Add question</button>
+        </form>
+    </div>
+</div>
